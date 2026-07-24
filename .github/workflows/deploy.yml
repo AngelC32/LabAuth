@@ -45,7 +45,7 @@ jobs:
         run: |
           kubectl apply -f k8s/deployment.yaml -n cqrs-lab
 
-      - name: Apply deployment
+      - name: Apply service
         run: |
           kubectl apply -f k8s/service.yaml -n cqrs-lab
 
