@@ -18,6 +18,10 @@ jobs:
         id: vars
         run: echo "TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
+      - name: Make mvnw executable
+        working-directory: token
+        run: chmod +x mvnw
+
       - name: Build Quarkus app
         working-directory: token
         run: ./mvnw clean package -DskipTests
@@ -31,6 +35,11 @@ jobs:
 
       - name: Import into k3s
         run: sudo k3s ctr images import token-api.tar
+
+      - name: Create namespace
+        run: |
+          kubectl create namespace cqrs-lab \
+          --dry-run=client -o yaml | kubectl apply -f -
 
       - name: Update deployment image
         run: |
