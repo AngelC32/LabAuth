@@ -45,6 +45,10 @@ jobs:
         run: |
           kubectl apply -f k8s/deployment.yaml -n cqrs-lab
 
+      - name: Apply deployment
+        run: |
+          kubectl apply -f k8s/service.yaml -n cqrs-lab
+
       - name: Update deployment image
         run: |
           kubectl set image deployment/token-api \
