@@ -9,7 +9,7 @@ public class ClientAuthService {
         "orders-service", "1234",
         "users-service", "abcd"
     );
-
+    //comment
     public boolean isValid(String clientId, String secret) {
         return secret.equals(clients.get(clientId));
     }
